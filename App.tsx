@@ -32,6 +32,18 @@ const App: React.FC = () => {
     setMobileMenuOpen(false);
   }, [currentPage]);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
+
   const addToCart = (product: Product) => {
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
@@ -65,11 +77,11 @@ const App: React.FC = () => {
     <div className="min-h-screen bg-white text-gray-800 overflow-x-hidden flex flex-col font-sans">
       
       {/* Navbar */}
-      <nav className={`fixed top-0 w-full z-30 transition-all duration-300 ${scrolled || currentPage !== 'home' || mobileMenuOpen ? 'bg-white/95 backdrop-blur-md shadow-sm py-4' : 'bg-transparent py-6'}`}>
-        <div className="container mx-auto px-6 flex justify-between items-center">
+      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled || currentPage !== 'home' || mobileMenuOpen ? 'bg-white shadow-sm py-4' : 'bg-transparent py-6'}`}>
+        <div className="container mx-auto px-6 flex justify-between items-center relative z-50">
           {/* Logo */}
-          <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 focus:outline-none z-40 relative">
-            <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white font-bold text-xl">
+          <button onClick={() => setCurrentPage('home')} className="flex items-center gap-2 focus:outline-none">
+            <div className="w-10 h-10 bg-brand-green rounded-full flex items-center justify-center text-white font-bold text-xl shrink-0">
               W
             </div>
             <span className="font-bold text-2xl text-brand-dark">
@@ -100,7 +112,7 @@ const App: React.FC = () => {
           </div>
 
           {/* Actions */}
-          <div className="flex items-center gap-4 z-40 relative">
+          <div className="flex items-center gap-4">
             <button 
               onClick={() => setIsSearchOpen(true)}
               className="p-2 hover:bg-gray-100 rounded-full transition-colors hidden sm:block"
@@ -119,23 +131,44 @@ const App: React.FC = () => {
               )}
             </button>
             <button 
-              className="md:hidden p-2"
+              className="md:hidden p-2 text-gray-800 hover:bg-gray-100 rounded-full transition-colors"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle Menu"
             >
-               {mobileMenuOpen ? <X /> : <MenuIcon />}
+               {mobileMenuOpen ? <X size={28} /> : <MenuIcon size={28} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        <div className={`fixed inset-0 bg-white z-30 flex flex-col items-center justify-center gap-8 transition-transform duration-300 md:hidden ${mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'}`}>
-            <button onClick={() => setCurrentPage('home')} className="text-2xl font-bold">Beranda</button>
-            <button onClick={() => setCurrentPage('menu')} className="text-2xl font-bold">Menu</button>
-            <button onClick={() => setCurrentPage('about')} className="text-2xl font-bold">Tentang Kami</button>
+        {/* Mobile Menu Overlay */}
+        <div className={`fixed inset-0 bg-white z-40 flex flex-col items-center justify-start pt-32 gap-8 transition-all duration-300 md:hidden ${mobileMenuOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'}`}>
+            <button 
+              onClick={() => setCurrentPage('home')} 
+              className={`text-2xl font-bold ${currentPage === 'home' ? 'text-brand-green' : 'text-brand-dark'}`}
+            >
+              Beranda
+            </button>
+            <button 
+              onClick={() => setCurrentPage('menu')} 
+              className={`text-2xl font-bold ${currentPage === 'menu' ? 'text-brand-green' : 'text-brand-dark'}`}
+            >
+              Menu
+            </button>
+            <button 
+              onClick={() => setCurrentPage('about')} 
+              className={`text-2xl font-bold ${currentPage === 'about' ? 'text-brand-green' : 'text-brand-dark'}`}
+            >
+              Tentang Kami
+            </button>
+            
+            <div className="w-16 h-1 bg-gray-100 rounded-full my-2"></div>
+            
             <button onClick={() => {
               setMobileMenuOpen(false);
               setIsSearchOpen(true);
-            }} className="text-xl text-gray-500 flex items-center gap-2"><Search size={20}/> Cari Menu</button>
+            }} className="text-xl text-gray-500 flex items-center gap-2 font-medium hover:text-brand-green">
+              <Search size={20}/> Cari Menu
+            </button>
         </div>
       </nav>
 
