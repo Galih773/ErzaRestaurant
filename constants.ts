@@ -37,7 +37,7 @@ export const MENU_ITEMS: Product[] = [
     name: 'Rendang Daging',
     description: 'Daging sapi masak lambat dalam santan dan rempah. Rasa asli Padang.',
     price: 45000,
-    image: 'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?w=500&q=80',
+    image: 'https://ik.imagekit.io/ownlrwru2/daging_rendang.jpg',
     category: 'makanan',
     calories: 520,
     rating: 5.0
