@@ -17,7 +17,7 @@ export const MENU_ITEMS: Product[] = [
     name: 'Sate Ayam Madura',
     description: 'Sate ayam bakar dengan bumbu kacang yang kaya dan kecap manis.',
     price: 30000,
-    image: 'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=500&q=80',
+    image: 'https://ik.imagekit.io/ownlrwru2/daging_rendang.jpg',
     category: 'makanan',
     calories: 380,
     rating: 4.9
