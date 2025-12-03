@@ -6,7 +6,8 @@ export const MENU_ITEMS: Product[] = [
     name: 'Nasi Goreng Spesial',
     description: 'Nasi goreng khas Indonesia dengan ayam, telur, dan rempah tradisional.',
     price: 25000,
-    image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=80',
+    // image: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=80',
+    image: 'https://ik.imagekit.io/ownlrwru2/download.jpg',
     category: 'makanan',
     calories: 450,
     rating: 4.8
