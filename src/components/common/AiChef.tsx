@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, Send, X, Sparkles, ChefHat } from 'lucide-react';
-import { getMenuRecommendation } from '../services/geminiService';
-import { ChatMessage } from '../types';
+// import { getMenuRecommendation } from '../../services/geminiService';
+import { ChatMessage } from '../../types';
 
 const AiChef: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +29,8 @@ const AiChef: React.FC = () => {
     setIsLoading(true);
 
     try {
-      const responseText = await getMenuRecommendation(userText);
+      // const responseText = await getMenuRecommendation(userText);
+      const responseText = "Maaf, fitur Chef Assistant sedang dalam perbaikan.";
       setMessages(prev => [...prev, { role: 'model', text: responseText }]);
     } catch (error) {
       setMessages(prev => [...prev, { role: 'model', text: "Maaf, ada masalah koneksi. Coba lagi nanti ya." }]);
@@ -44,7 +45,7 @@ const AiChef: React.FC = () => {
 
   return (
     <div className="fixed bottom-6 right-6 z-30 flex flex-col items-end font-sans">
-      
+
       {/* Chat Window */}
       <div className={`
         bg-white rounded-2xl shadow-2xl w-[320px] sm:w-[380px] overflow-hidden transition-all duration-300 origin-bottom-right mb-4 border border-gray-200
@@ -53,13 +54,13 @@ const AiChef: React.FC = () => {
         {/* Header */}
         <div className="bg-gradient-to-r from-brand-red to-red-700 p-4 flex justify-between items-center">
           <div className="flex items-center gap-3">
-             <div className="bg-white/20 p-2 rounded-full">
-                <ChefHat className="text-white" size={20} />
-             </div>
-             <div>
-                <h3 className="text-white font-bold text-sm">Chef Virtual</h3>
-                <p className="text-red-100 text-xs">Online</p>
-             </div>
+            <div className="bg-white/20 p-2 rounded-full">
+              <ChefHat className="text-white" size={20} />
+            </div>
+            <div>
+              <h3 className="text-white font-bold text-sm">Chef Virtual</h3>
+              <p className="text-red-100 text-xs">Online</p>
+            </div>
           </div>
           <button onClick={() => setIsOpen(false)} className="text-white hover:bg-white/20 p-1 rounded">
             <X size={18} />
@@ -72,8 +73,8 @@ const AiChef: React.FC = () => {
             <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
               <div className={`
                 max-w-[80%] p-3 rounded-2xl text-sm leading-relaxed
-                ${msg.role === 'user' 
-                  ? 'bg-brand-red text-white rounded-tr-none' 
+                ${msg.role === 'user'
+                  ? 'bg-brand-red text-white rounded-tr-none'
                   : 'bg-white text-gray-700 shadow-sm border border-gray-100 rounded-tl-none'}
               `}>
                 {msg.text}
@@ -93,15 +94,15 @@ const AiChef: React.FC = () => {
 
         {/* Input */}
         <div className="p-3 bg-white border-t border-gray-100 flex gap-2">
-          <input 
-            type="text" 
+          <input
+            type="text"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
             onKeyDown={handleKeyPress}
             placeholder="Lagi pengen makan apa?..."
             className="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-brand-red/50 text-gray-700"
           />
-          <button 
+          <button
             onClick={handleSend}
             disabled={isLoading || !inputValue.trim()}
             className="bg-brand-red text-white p-2 rounded-full hover:bg-red-800 disabled:opacity-50 transition-colors"
@@ -112,7 +113,7 @@ const AiChef: React.FC = () => {
       </div>
 
       {/* Floating Button */}
-      <button 
+      <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
           bg-brand-yellow text-brand-dark font-bold rounded-full p-4 shadow-lg hover:scale-110 transition-transform flex items-center gap-2 group
