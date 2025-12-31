@@ -61,7 +61,7 @@ const seedProducts = async () => {
             image_url: imageUrl,
             category: item.category,
             calories: item.calories,
-            rating: item.rating
+            // rating: item.rating
         });
     }
 
