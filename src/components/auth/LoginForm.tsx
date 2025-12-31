@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
 import { Lock, Mail, AlertCircle, Loader2 } from 'lucide-react';
 
@@ -86,9 +86,9 @@ const LoginForm: React.FC = () => {
 
                 <div className="mt-8 text-center text-sm text-gray-500">
                     Belum punya akun?{' '}
-                    <a href="/register" className="text-brand-green font-bold hover:underline">
+                    <Link to="/register" className="text-brand-green font-bold hover:underline">
                         Daftar disini
-                    </a>
+                    </Link>
                 </div>
             </div>
         </div>
