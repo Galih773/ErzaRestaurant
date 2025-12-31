@@ -1,5 +1,5 @@
 import React from 'react';
-import { Heart, ShieldCheck, Truck } from 'lucide-react';
+import { Heart, ShieldCheck, Clock } from 'lucide-react';
 
 const WhyChooseUs: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const WhyChooseUs: React.FC = () => {
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-4xl font-bold text-brand-dark mb-4">MENGAPA KAMI?</h2>
         <p className="text-gray-500 max-w-xl mx-auto mb-16">
-          Anda memilih kami karena Anda mendapatkan makanan berkualitas terbaik dari kami dan kami mengantarkannya dengan cepat.
+          Anda memilih kami karena Anda mendapatkan makanan berkualitas terbaik yang disiapkan dengan sepenuh hati.
         </p>
 
         <div className="grid md:grid-cols-3 gap-10 px-4 lg:px-20">
@@ -36,11 +36,11 @@ const WhyChooseUs: React.FC = () => {
           {/* Feature 3 */}
           <div className="p-8 rounded-[40px] bg-white border border-gray-100 shadow-[0_10px_40px_-10px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_40px_-10px_rgba(92,158,45,0.2)] transition-all duration-300 group">
             <div className="w-20 h-20 mx-auto bg-brand-light rounded-full flex items-center justify-center mb-6 group-hover:bg-brand-green transition-colors duration-300">
-              <Truck size={32} className="text-brand-green group-hover:text-white transition-colors" />
+              <Clock size={32} className="text-brand-green group-hover:text-white transition-colors" />
             </div>
-            <h3 className="text-xl font-bold text-brand-dark mb-3">Pengiriman Cepat</h3>
+            <h3 className="text-xl font-bold text-brand-dark mb-3">Siap Ambil Cepat</h3>
             <p className="text-gray-500 text-sm leading-relaxed">
-              Tujuan utama kurir kami adalah mengantarkan pesanan dengan cepat.
+              Pesan online, bayar, dan ambil pesanan Anda yang sudah siap di lokasi kami.
             </p>
           </div>
         </div>

@@ -157,18 +157,11 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, clearCart }) => 
                         setLoading(false);
                     }
                 },
-                onPending: async (result: any) => {
+                onPending: (result: any) => {
                     console.log('Payment pending:', result);
-                    try {
-                        // Create order with pending status
-                        const order = await createOrder(orderNumber, 'pending', result.transaction_id);
-                        clearCart();
-                        navigate(`/order-success/${order.id}`);
-                    } catch (err) {
-                        console.error('Error creating order:', err);
-                        setError('Gagal membuat pesanan. Hubungi admin.');
-                        setLoading(false);
-                    }
+                    // Don't create order for pending - user needs to complete payment
+                    setLoading(false);
+                    setError('Pembayaran belum selesai. Silakan selesaikan pembayaran untuk membuat pesanan. Anda bisa mencoba lagi.');
                 },
                 onError: (result: any) => {
                     console.error('Payment error:', result);
